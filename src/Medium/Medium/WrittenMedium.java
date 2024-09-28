@@ -1,8 +1,7 @@
-package Library.Media.Media;
+package Medium.Medium;
 
-import Library.Search.Searchable;
 
-public abstract class WrittenMedium<T> extends DigitalMedium<T> implements Searchable<T> {
+public abstract class WrittenMedium extends Medium{
     protected int pages;
 
     protected WrittenMedium(String title, int year, int pages) {
