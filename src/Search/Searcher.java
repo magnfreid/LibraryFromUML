@@ -15,7 +15,11 @@ public class Searcher {
         this.library = library;
     }
 
-
+    /**
+     * Searches through all media and creators.
+     * @param search
+     * @return
+     */
     public ArrayList<Searchable> searchLibrary(String search) {
         ArrayList<Searchable> searchResult = new ArrayList<>();
         for (Medium medium : library.getMediums()) {
@@ -31,6 +35,11 @@ public class Searcher {
         return searchResult;
     }
 
+    /**
+     * Searches through all registered members.
+     * @param search
+     * @return
+     */
     public ArrayList<Member> searchMember(String search) {
         ArrayList<Member> searchResult = new ArrayList<>();
         for (Member member : library.getMembers()) {

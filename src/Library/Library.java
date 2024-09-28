@@ -13,9 +13,8 @@ import Medium.Medium.Medium;
 import java.util.ArrayList;
 
 import Members.MemberStatus;
-
 import Populator.Populator;
-import Search.Searcher;
+
 
 public class Library {
     private final ArrayList<Medium> mediums = new ArrayList<>();
@@ -30,6 +29,10 @@ public class Library {
         this.virtualDesk = new VirtualDesk(this);
     }
 
+    /**
+     * The heart and command station of the library!
+     * @return
+     */
     public VirtualDesk virtualDesk() {
         return virtualDesk;
     }
@@ -48,6 +51,13 @@ public class Library {
         }
     }
 
+    /**
+     * Prevents adding the same author more than once.
+     * @param title
+     * @param year
+     * @param pages
+     * @param authorName
+     */
     public void addBook(String title, int year, int pages, String authorName) {
         Author author = null;
         for (Creator creator : creators) {
@@ -65,6 +75,14 @@ public class Library {
         Book book = new Book(title, year, pages, author);
         mediums.add(book);
     }
+
+    /**
+     * Prevents adding the same publisher more than once.
+     * @param title
+     * @param year
+     * @param pages
+     * @param publisherName
+     */
 
     public void addMagazine(String title, int year, int pages, String publisherName) {
         Publisher publisher = null;
@@ -84,6 +102,14 @@ public class Library {
         mediums.add(magazine);
     }
 
+
+    /**
+     * Prevents adding the same director more than once.
+     * @param title
+     * @param year
+     * @param lengthMinutes
+     * @param directorName
+     */
     public void addDVD(String title, int year, int lengthMinutes, String directorName) {
         Director director = null;
         for (Creator creator : creators) {
@@ -102,6 +128,11 @@ public class Library {
         mediums.add(magazine);
     }
 
+    /**
+     * Checks if member already exists and adds a new member if it doesn't exist already.
+     * @param name
+     * @param memberStatus
+     */
     public void addMember(String name, MemberStatus memberStatus) {
         boolean memberExists = false;
         for (Member member : members) {
