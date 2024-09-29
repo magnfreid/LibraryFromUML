@@ -19,4 +19,10 @@ public enum MemberStatus {
     public int getLoanTime() {
         return loanTime;
     }
+
+    @Override
+    public String toString() {
+        return description + " (" +  loanTime +" days)"
+               ;
+    }
 }

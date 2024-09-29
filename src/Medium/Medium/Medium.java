@@ -24,6 +24,10 @@ public abstract class Medium implements Searchable {
         return title;
     }
 
+    public Creator getCreator(){
+     return creator;
+    }
+
     @Override
     public boolean matchesSearch(String search) {
      return title.toLowerCase().contains(search.toLowerCase());

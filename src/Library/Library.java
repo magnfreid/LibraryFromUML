@@ -1,9 +1,6 @@
 package Library;
 
-import Medium.Creators.Author;
 import Medium.Creators.Creator;
-import Medium.Creators.Director;
-import Medium.Creators.Publisher;
 import Medium.Medium.Types.Book;
 import Medium.Medium.Types.DVD;
 import Medium.Medium.Types.Magazine;
@@ -11,6 +8,7 @@ import Members.Member;
 import Medium.Medium.Medium;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import Members.MemberStatus;
 import Populator.Populator;
@@ -37,95 +35,35 @@ public class Library {
         return virtualDesk;
     }
 
-    public void printMediums() {
+    /**
+     * Checks if creator (name) already exists before adding new medium.
+     * @param newMedium
+     */
+    public void addMedium(Medium newMedium){
+       Creator creator = null;
         for (Medium medium : mediums) {
-            System.out.println("*****");
-            System.out.println(medium.toString());
-        }
-    }
-
-    public void printMembers() {
-        for (Member member : members) {
-            System.out.println("*****");
-            System.out.println(member.toString());
-        }
-    }
-
-    /**
-     * Prevents adding the same author more than once.
-     * @param title
-     * @param year
-     * @param pages
-     * @param authorName
-     */
-    public void addBook(String title, int year, int pages, String authorName) {
-        Author author = null;
-        for (Creator creator : creators) {
-            if (creator instanceof Author) {
-                if (creator.getName().equalsIgnoreCase(authorName)) {
-                    author = (Author) creator;
-                    break;
+            if (Objects.equals(medium.getCreator().getName(), newMedium.getCreator().getName())) {
+                creator = medium.getCreator();
                 }
+        }
+        if (creator == null) {
+            creator = newMedium.getCreator(); {
             }
+            creators.add(creator);
         }
-        if (author == null) {
-            author = new Author(authorName);
-            creators.add(author);
-        }
-        Book book = new Book(title, year, pages, author);
-        mediums.add(book);
+        mediums.add(newMedium);
     }
 
-    /**
-     * Prevents adding the same publisher more than once.
-     * @param title
-     * @param year
-     * @param pages
-     * @param publisherName
-     */
-
-    public void addMagazine(String title, int year, int pages, String publisherName) {
-        Publisher publisher = null;
-        for (Creator creator : creators) {
-            if (creator instanceof Publisher) {
-                if (creator.getName().equalsIgnoreCase(publisherName)) {
-                    publisher = (Publisher) creator;
-                    break;
-                }
-            }
-        }
-        if (publisher == null) {
-            publisher = new Publisher(publisherName);
-            creators.add(publisher);
-        }
-        Magazine magazine = new Magazine(title, year, pages, publisher);
-        mediums.add(magazine);
+    public void addBook(Book book) {
+       addMedium(book);
     }
 
+    public void addMagazine(Magazine magazine) {
+        addMedium(magazine);
+    }
 
-    /**
-     * Prevents adding the same director more than once.
-     * @param title
-     * @param year
-     * @param lengthMinutes
-     * @param directorName
-     */
-    public void addDVD(String title, int year, int lengthMinutes, String directorName) {
-        Director director = null;
-        for (Creator creator : creators) {
-            if (creator instanceof Director) {
-                if (creator.getName().equalsIgnoreCase(directorName)) {
-                    director = (Director) creator;
-                    break;
-                }
-            }
-        }
-        if (director == null) {
-            director = new Director(directorName);
-            creators.add(director);
-        }
-        DVD magazine = new DVD(title, year, lengthMinutes, director);
-        mediums.add(magazine);
+    public void addDVD(DVD dvd) {
+       addMedium(dvd);
     }
 
     /**
@@ -150,6 +88,21 @@ public class Library {
 
     }
 
+
+
+    public void printMediums() {
+        for (Medium medium : mediums) {
+            System.out.println("*****");
+            System.out.println(medium.toString());
+        }
+    }
+
+    public void printMembers() {
+        for (Member member : members) {
+            System.out.println("*****");
+            System.out.println(member.toString());
+        }
+    }
 
     public ArrayList<Medium> getMediums() {
         return mediums;

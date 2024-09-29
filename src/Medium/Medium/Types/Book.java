@@ -5,7 +5,7 @@ import Medium.Medium.WrittenMedium;
 
 public class Book extends WrittenMedium {
 
-    public Book(String title, int year, int pages, Author author) {
+    public Book(String title, Author author, int year, int pages) {
         super(title, year, pages);
         this.creator = author;
     }
