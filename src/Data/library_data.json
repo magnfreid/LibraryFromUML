@@ -1,0 +1,174 @@
+{
+  "mediums": [
+    {
+      "type": "book",
+      "pages": 300,
+      "title": "1984",
+      "year": 1949,
+      "creator": {
+        "name": "George Orwell"
+      }
+    },
+    {
+      "type": "book",
+      "pages": 500,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "year": 1997,
+      "creator": {
+        "name": "J.K. Rowling"
+      }
+    },
+    {
+      "type": "book",
+      "pages": 284,
+      "title": "To Kill a Mockingbird",
+      "year": 1960,
+      "creator": {
+        "name": "Harper Lee"
+      }
+    },
+    {
+      "type": "book",
+      "pages": 310,
+      "title": "The Hobbit",
+      "year": 1937,
+      "creator": {
+        "name": "J.R.R. Tolkien"
+      }
+    },
+    {
+      "type": "magazine",
+      "pages": 85,
+      "title": "National Geographic",
+      "year": 2020,
+      "creator": {
+        "name": "National Geographic Society"
+      }
+    },
+    {
+      "type": "magazine",
+      "pages": 60,
+      "title": "Time Magazine",
+      "year": 2021,
+      "creator": {
+        "name": "Time USA LLC"
+      }
+    },
+    {
+      "type": "magazine",
+      "pages": 70,
+      "title": "Forbes",
+      "year": 2019,
+      "creator": {
+        "name": "Forbes Media"
+      }
+    },
+    {
+      "type": "magazine",
+      "pages": 55,
+      "title": "Wired",
+      "year": 2018,
+      "creator": {
+        "name": "Condé Nast"
+      }
+    },
+    {
+      "type": "dvd",
+      "lengthMinutes": 143,
+      "title": "The Dark Knight",
+      "year": 2008,
+      "creator": {
+        "name": "Christopher Nolan"
+      }
+    },
+    {
+      "type": "dvd",
+      "lengthMinutes": 132,
+      "title": "The Matrix",
+      "year": 1999,
+      "creator": {
+        "name": "The Wachowskis"
+      }
+    },
+    {
+      "type": "dvd",
+      "lengthMinutes": 121,
+      "title": "Inception",
+      "year": 2010,
+      "creator": {
+        "name": "Christopher Nolan"
+      }
+    },
+    {
+      "type": "dvd",
+      "lengthMinutes": 180,
+      "title": "The Lord of the Rings: The Return of the King",
+      "year": 2003,
+      "creator": {
+        "name": "Peter Jackson"
+      }
+    }
+  ],
+  "members": [
+    {
+      "name": "Trevor",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "4a31ac4e-848e-4fe5-8690-44c2a634e558"
+    },
+    {
+      "name": "Michelle",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "bf0b5b25-ebd7-4bcb-8589-80018298f43e"
+    },
+    {
+      "name": "John",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "4c31bc3e-849b-4e9f-968a-48c9b2cb748f"
+    },
+    {
+      "name": "Sarah",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "ff2a45dc-901a-4eb7-95b3-74f1a0a6e587"
+    },
+    {
+      "name": "James",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "2d31a3ec-1135-44f9-9f65-6e312b2c47cf"
+    },
+    {
+      "name": "Emily",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "3b31ad4e-7e93-4e0d-b832-88356b73d21a"
+    },
+    {
+      "name": "Robert",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "6d80d3ec-997f-42df-8149-9d12cdd74c1e"
+    },
+    {
+      "name": "Linda",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "4f09a14e-824e-456d-9925-4fd2a631f93e"
+    },
+    {
+      "name": "Michael",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "7d98f3bd-345d-409d-b9f9-7b32538e7c1f"
+    },
+    {
+      "name": "Jennifer",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "9b30ac6d-6e7a-41b8-8cb9-54e21b632a7e"
+    }
+  ]
+}

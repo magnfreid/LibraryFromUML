@@ -1,4 +1,4 @@
-package Populator;
+package Data.Helpers;
 
 import com.google.gson.*;
 import Medium.Creators.Author;

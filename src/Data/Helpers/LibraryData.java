@@ -1,9 +1,7 @@
-package Populator;
+package Data.Helpers;
 
 import Medium.Medium.Medium;
 import Members.Member;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 

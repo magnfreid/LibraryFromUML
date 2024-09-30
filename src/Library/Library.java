@@ -6,14 +6,13 @@ import Medium.Medium.Types.DVD;
 import Medium.Medium.Types.Magazine;
 import Members.Member;
 import Medium.Medium.Medium;
-import Populator.LibraryData;
-import Populator.JsonUtil;
+import Data.Helpers.LibraryData;
+import Data.Helpers.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 import Members.MemberStatus;
-import Populator.Populator;
 
 
 public class Library {
@@ -23,18 +22,15 @@ public class Library {
     private final VirtualDesk virtualDesk;
 
     public Library() {
-    LibraryData libraryData = new LibraryData();
-    this.mediums = JsonUtil.readLibraryData().getMediums();
-    this.members = JsonUtil.readLibraryData().getMembers();
-      /*  Populator populator = new Populator();
-        populator.loadMembers(this);
-        populator.loadMediums(this);
-        JsonUtil.saveLibraryData(mediums, members);*/
+        LibraryData libraryData = new LibraryData();
+        this.mediums = JsonUtil.readLibraryData().getMediums();
+        this.members = JsonUtil.readLibraryData().getMembers();
         this.virtualDesk = new VirtualDesk(this);
     }
 
     /**
      * The heart and command station of the library!
+     *
      * @return
      */
     public VirtualDesk virtualDesk() {
@@ -43,25 +39,28 @@ public class Library {
 
     /**
      * Checks if creator (name) already exists before adding new medium.
+     *
      * @param newMedium
      */
-    public void addMedium(Medium newMedium){
-       Creator creator = null;
+    public void addMedium(Medium newMedium) {
+        Creator creator = null;
         for (Medium medium : mediums) {
             if (Objects.equals(medium.getCreator().getName(), newMedium.getCreator().getName())) {
                 creator = medium.getCreator();
-                }
+            }
         }
         if (creator == null) {
-            creator = newMedium.getCreator(); {
+            creator = newMedium.getCreator();
+            {
             }
             creators.add(creator);
         }
         mediums.add(newMedium);
+        JsonUtil.saveLibraryData(mediums, members);
     }
 
     public void addBook(Book book) {
-       addMedium(book);
+        addMedium(book);
     }
 
     public void addMagazine(Magazine magazine) {
@@ -69,11 +68,12 @@ public class Library {
     }
 
     public void addDVD(DVD dvd) {
-       addMedium(dvd);
+        addMedium(dvd);
     }
 
     /**
      * Checks if member already exists and only adds a new member if it doesn't.
+     *
      * @param name
      * @param memberStatus
      */
@@ -89,11 +89,9 @@ public class Library {
         if (!memberExists) {
             Member newMember = new Member(name, memberStatus);
             members.add(newMember);
+            JsonUtil.saveLibraryData(mediums, members);
         }
-
-
     }
-
 
 
     public void printMediums() {

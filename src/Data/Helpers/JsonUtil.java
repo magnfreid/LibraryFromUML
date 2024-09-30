@@ -1,7 +1,6 @@
-package Populator;
+package Data.Helpers;
 
 import Medium.Medium.Medium;
-import Populator.MediumDeserializer;
 import Members.Member;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 
 public class JsonUtil {
 
-    private static final String JSON_FILE_PATH = "src/Populator/library_data.json"; // Change this to your file path
+    private static final String JSON_FILE_PATH = "src/Data/library_data.json"; // Change this to your file path
     static Gson gson = new GsonBuilder().registerTypeAdapter(Medium.class, new MediumDeserializer()) // Register custom deserializer
             .setPrettyPrinting()
             .create();
