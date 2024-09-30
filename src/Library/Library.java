@@ -22,7 +22,6 @@ public class Library {
     private final VirtualDesk virtualDesk;
 
     public Library() {
-        LibraryData libraryData = new LibraryData();
         this.mediums = JsonUtil.readLibraryData().getMediums();
         this.members = JsonUtil.readLibraryData().getMembers();
         this.virtualDesk = new VirtualDesk(this);
