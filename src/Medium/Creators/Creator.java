@@ -4,6 +4,7 @@ import Search.Searchable;
 
 public abstract class Creator implements Searchable {
      protected String name;
+     //TODO Lägg till en lista på alla verk???
 
      Creator(String name) {
         this.name = name;

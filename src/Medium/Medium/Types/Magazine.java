@@ -5,7 +5,7 @@ import Medium.Medium.PhysicalMedia;
 
 public class Magazine extends PhysicalMedia {
 final private String type;
-    public Magazine(String title, int year, int pages, Publisher publisher) {
+    public Magazine(String title,Publisher publisher, int year, int pages) {
         super(title, year, pages);
         this.creator = publisher;
         this.type = "magazine";

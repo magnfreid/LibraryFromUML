@@ -3,22 +3,18 @@ package Loan;
 import Medium.Medium.Medium;
 
 public class Loan {
-    final private int loanDate;
-   private int returnDate;
+   private Medium medium;
 
     public Loan(Medium medium) {
-        loanDate = 0;
+        this.medium = medium;
+
     }
 
-    public int getLoanDate() {
-        return loanDate;
-    }
 
-    public int getReturnDate() {
-        return returnDate;
-    }
 
-    public void setReturnDate(int returnDate) {
-        this.returnDate = returnDate;
+
+    @Override
+    public String toString() {
+        return "Loan: " + medium;
     }
 }

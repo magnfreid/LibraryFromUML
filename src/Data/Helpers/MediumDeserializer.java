@@ -30,12 +30,12 @@ public class MediumDeserializer implements JsonDeserializer<Medium> {
             case "magazine": {
                 int pages = jsonObject.get("pages").getAsInt();
                 String publisherName = jsonObject.get("creator").getAsJsonObject().get("name").getAsString();
-                return new Magazine(title, year, pages, new Publisher(publisherName));
+                return new Magazine(title, new Publisher(publisherName), year, pages);
             }
             case "dvd": {
                 int lengthMinutes = jsonObject.get("lengthMinutes").getAsInt();
                 String directorName = jsonObject.get("creator").getAsJsonObject().get("name").getAsString();
-                return new DVD(title, year, lengthMinutes, new Director(directorName));
+                return new DVD(title, new Director(directorName), year, lengthMinutes);
             }
             default:
                 throw new JsonParseException("Unknown Medium type: " + mediumType);

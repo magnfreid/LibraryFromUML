@@ -94,17 +94,30 @@ public class Library {
     }
 
 
-    public void printMediums() {
+    public void printMediums(ArrayList<Medium> mediums) {
+        int index = 0;
         for (Medium medium : mediums) {
-            System.out.println("*****");
-            System.out.println(medium.toString());
+            System.out.println(index+1 + ":");
+            System.out.println(medium);
+            index++;
         }
     }
 
-    public void printMembers() {
+    public void printMembers(ArrayList<Member> members) {
+        int index = 0;
         for (Member member : members) {
-            System.out.println("*****");
-            System.out.println(member.toString());
+            System.out.println(index+1 + ":");
+            System.out.println(member);
+            index++;
+        }
+    }
+
+    public void printCreators(ArrayList<Creator> creators) {
+        int index = 0;
+        for (Creator creator : creators) {
+            System.out.println(index+1 + ":");
+            System.out.println(creator);
+            index++;
         }
     }
 

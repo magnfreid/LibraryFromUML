@@ -1,10 +1,15 @@
 package Library;
 
 import Medium.Creators.Author;
+import Medium.Creators.Creator;
+import Medium.Creators.Director;
+import Medium.Creators.Publisher;
+import Medium.Medium.Medium;
 import Medium.Medium.Types.Book;
+import Medium.Medium.Types.DVD;
+import Medium.Medium.Types.Magazine;
 import Members.Member;
 import Members.MemberStatus;
-import Search.Searchable;
 import Search.Searcher;
 
 import java.util.ArrayList;
@@ -23,13 +28,14 @@ public class VirtualDesk {
 
     public void openLibrary() {
         while (true) {
-            System.out.println("Welcome to the library!");
+            System.out.println("\nWelcome to the library!");
             System.out.println("1. Search media");
             System.out.println("2. Search members");
-            System.out.println("3. Add member");
-            System.out.println("4. Add media");
-            System.out.println("5. List all members");
-            System.out.println("6. Exit");
+            System.out.println("3. Search authors, publisher or director");
+            System.out.println("4. Add member");
+            System.out.println("5. Add media");
+            System.out.println("6. List all members");
+            System.out.println("7. Exit");
             System.out.println("Enter:");
             String input = scanner.nextLine();
             switch (input) {
@@ -50,6 +56,15 @@ public class VirtualDesk {
                     break;
                 }
                 case "3": {
+                    System.out.println("Search author:");
+                    String search = scanner.nextLine();
+                    if (!search.equalsIgnoreCase("back"))
+                    {
+                        searchCreatorMenu(search);
+                    }
+                    break;
+                }
+                case "4": {
                     System.out.println("*** Add new member ***");
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
@@ -58,7 +73,7 @@ public class VirtualDesk {
                     }
                     break;
                 }
-                case "4": {
+                case "5": {
                     System.out.println("*** Add new media to the library ***");
                     System.out.println("Choose media:");
                     System.out.println("1. Book");
@@ -66,41 +81,15 @@ public class VirtualDesk {
                     System.out.println("3. DVD");
                     String mediaChoice = scanner.nextLine();
                     if (!mediaChoice.equalsIgnoreCase("back")) {
-                        switch (mediaChoice.toLowerCase()) {
-                            case "1": {
-                                System.out.println("*** Add book ***");
-                                System.out.println("Title:");
-                                String title = scanner.nextLine();
-                                System.out.println("Author:");
-                                String authorName = scanner.nextLine();
-                                System.out.println("Year: ");
-                                int year = scanner.nextInt();
-                                scanner.nextLine();
-                                System.out.println("Pages: ");
-                                int pages = scanner.nextInt();
-                                scanner.nextLine();
-                                Book book = new Book(title, new Author(authorName), year, pages);
-                                System.out.println(book +"\n*** Added to the library! ***");
-                                library.addBook(book);
-                                System.out.println("***     ***");
-                                break;
-                            }
-                            case "2": {
-                                break;                        }
-                            case "3": {
-                                break;
-                            }
-                            default: {
-                                System.out.println("Invalid input, try again!");
-                            }
-                        }
+                        addMediumMenu(mediaChoice);
                     }
                     break;
                 }
-                case "5": {
-                    System.out.println("All members:");
-                }
                 case "6": {
+                    System.out.println("All members:");
+                    library.printMembers(library.getMembers());
+                }
+                case "7": {
                     System.out.println("Exiting...");
                     System.exit(0);
                 }
@@ -108,6 +97,68 @@ public class VirtualDesk {
                     System.out.println("Invalid input, try again...");
                 }
 
+            }
+        }
+    }
+
+    private void addMediumMenu(String mediaChoice) {
+        switch (mediaChoice) {
+            case "1": {
+                System.out.println("*** Add book ***");
+                System.out.println("Title:");
+                String title = scanner.nextLine();
+                System.out.println("Author:");
+                String authorName = scanner.nextLine();
+                System.out.println("Year: ");
+                int year = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Pages: ");
+                int pages = scanner.nextInt();
+                scanner.nextLine();
+                Book book = new Book(title, new Author(authorName), year, pages);
+                System.out.println(book + "\n*** Added to the library! ***");
+                library.addBook(book);
+                System.out.println("***     ***");
+                break;
+            }
+            case "2": {
+                System.out.println("*** Add magazine ***");
+                System.out.println("Title:");
+                String title = scanner.nextLine();
+                System.out.println("Publisher:");
+                String publisherName = scanner.nextLine();
+                System.out.println("Year: ");
+                int year = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Pages: ");
+                int pages = scanner.nextInt();
+                scanner.nextLine();
+                Magazine magazine = new Magazine(title, new Publisher(publisherName), year, pages);
+                System.out.println(magazine + "\n*** Added to the library! ***");
+                library.addMagazine(magazine);
+                System.out.println("***     ***");
+                break;
+            }
+            case "3": {
+                System.out.println("*** Add DVD ***");
+                System.out.println("Title:");
+                String title = scanner.nextLine();
+                System.out.println("Director:");
+                String directorName = scanner.nextLine();
+                System.out.println("Year: ");
+                int year = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Length (minutes): ");
+                int lengthMinutes = scanner.nextInt();
+                scanner.nextLine();
+                DVD dvd = new DVD(title, new Director(directorName), year, lengthMinutes);
+                System.out.println(dvd + "\n*** Added to the library! ***");
+                library.addDVD(dvd);
+                System.out.println("***     ***");
+                break;
+            }
+            default: {
+                System.out.println("Invalid input, try again!");
             }
         }
     }
@@ -137,32 +188,37 @@ public class VirtualDesk {
         library.addMember(name, memberStatus);
         System.out.println(name + " was added as a member with status of " + memberStatus);
     }
-
+ //TODO säkra felaktig input
     private void searchMemberMenu(String search) {
-        int searchIndex = 0;
         ArrayList<Member> searchResult = searcher.searchMember(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
         if (!searchResult.isEmpty()) {
-            for (Member member : searchResult) {
-                System.out.println();
-                System.out.println(searchIndex + 1 + ":");
-                System.out.println(member);
-                searchIndex++;
-            }
+            library.printMembers(searchResult);
+            System.out.println("Choose member: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            Member chosenMember = searchResult.get(choice - 1);
+            System.out.println(
+                    chosenMember.getLoans().isEmpty()
+                            ? chosenMember.getName() + " has no loans."
+                            : "Loans:\n" + chosenMember.getLoans());
         }
     }
 
+
     private void searchMediaMenu(String search) {
-        int searchIndex = 0;
-        ArrayList<Searchable> searchResult = searcher.searchLibrary(search);
+        ArrayList<Medium> searchResult = searcher.searchMedium(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
         if (!searchResult.isEmpty()) {
-            for (Searchable searchable : searchResult) {
-                System.out.println();
-                System.out.println(searchIndex + 1 + ":");
-                System.out.println(searchable);
-                searchIndex++;
-            }
+            library.printMediums(searchResult);
+        }
+    }
+//TODO Creator listan är tom och måste läggas till i JSON-filen, eller implementeras på annat sätt
+    private void searchCreatorMenu(String search) {
+        ArrayList<Creator> searchResult = searcher.searchCreator(search);
+        System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
+        if (!searchResult.isEmpty()) {
+            library.printCreators(searchResult);
         }
     }
 

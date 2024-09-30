@@ -19,9 +19,7 @@ public class JsonUtil {
             .create();
 
     public static LibraryData readLibraryData() {
-
         LibraryData libraryData = null;
-
         try (BufferedReader br = new BufferedReader(new FileReader(JSON_FILE_PATH))) {
             libraryData = gson.fromJson(br, LibraryData.class);
             System.out.println("Library data read.");
@@ -30,7 +28,6 @@ public class JsonUtil {
             e.printStackTrace();
             return  new LibraryData();
         }
-        System.out.println(libraryData);
         return libraryData;
     }
 

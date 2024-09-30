@@ -28,6 +28,13 @@ public class Member implements Searchable {
         return loans;
     }
 
+    public void printLoans(){
+        System.out.println(name + " current loans:");
+        for (Loan loan : loans) {
+            System.out.println(loan);
+        }
+    }
+
     @Override
     public String toString() {
         return "Name: " + name +

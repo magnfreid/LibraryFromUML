@@ -17,26 +17,24 @@ public class Searcher {
 
     /**
      * Searches through all media and creators.
+     *
      * @param search
      * @return
      */
-    public ArrayList<Searchable> searchLibrary(String search) {
-        ArrayList<Searchable> searchResult = new ArrayList<>();
+    public ArrayList<Medium> searchMedium(String search) {
+        ArrayList<Medium> searchResult = new ArrayList<>();
         for (Medium medium : library.getMediums()) {
             if (medium.matchesSearch(search)) {
                 searchResult.add(medium);
             }
         }
-        for (Creator creator : library.getCreators()) {
-            if (creator.matchesSearch(search)) {
-                searchResult.add(creator);
-            }
-        }
+
         return searchResult;
     }
 
     /**
      * Searches through all registered members.
+     *
      * @param search
      * @return
      */
@@ -45,6 +43,16 @@ public class Searcher {
         for (Member member : library.getMembers()) {
             if (member.matchesSearch(search)) {
                 searchResult.add(member);
+            }
+        }
+        return searchResult;
+    }
+
+    public ArrayList<Creator> searchCreator(String search) {
+        ArrayList<Creator> searchResult = new ArrayList<>();
+        for (Creator creator : library.getCreators()) {
+            if (creator.matchesSearch(search)) {
+                searchResult.add(creator);
             }
         }
         return searchResult;
