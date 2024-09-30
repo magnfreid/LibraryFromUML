@@ -1,13 +1,15 @@
 package Medium.Medium.Types;
 
 import Medium.Creators.Author;
-import Medium.Medium.WrittenMedium;
+import Medium.Medium.PhysicalMedia;
 
-public class Book extends WrittenMedium {
+public class Book extends PhysicalMedia {
+    final private String type;
 
     public Book(String title, Author author, int year, int pages) {
         super(title, year, pages);
         this.creator = author;
+        this.type = "book";
     }
 
 

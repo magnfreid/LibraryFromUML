@@ -6,6 +6,8 @@ import Medium.Medium.Types.DVD;
 import Medium.Medium.Types.Magazine;
 import Members.Member;
 import Medium.Medium.Medium;
+import Populator.LibraryData;
+import Populator.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,15 +17,19 @@ import Populator.Populator;
 
 
 public class Library {
-    private final ArrayList<Medium> mediums = new ArrayList<>();
-    private final ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Medium> mediums = new ArrayList<>();
+    private ArrayList<Member> members = new ArrayList<>();
     private final ArrayList<Creator> creators = new ArrayList<>();
     private final VirtualDesk virtualDesk;
 
     public Library() {
-        Populator populator = new Populator();
-        populator.loadMediums(this);
+    LibraryData libraryData = new LibraryData();
+    this.mediums = JsonUtil.readLibraryData().getMediums();
+    this.members = JsonUtil.readLibraryData().getMembers();
+      /*  Populator populator = new Populator();
         populator.loadMembers(this);
+        populator.loadMediums(this);
+        JsonUtil.saveLibraryData(mediums, members);*/
         this.virtualDesk = new VirtualDesk(this);
     }
 
@@ -67,7 +73,7 @@ public class Library {
     }
 
     /**
-     * Checks if member already exists and adds a new member if it doesn't exist already.
+     * Checks if member already exists and only adds a new member if it doesn't.
      * @param name
      * @param memberStatus
      */

@@ -1,0 +1,45 @@
+{
+  "mediums": [
+    {
+      "type": "book",
+      "pages": 421,
+      "title": "Three Little Birds",
+      "year": 1979,
+      "creator": {
+        "name": "Bob Marley"
+      }
+    },
+    {
+      "type": "magazine",
+      "pages": 79,
+      "title": "Gamereactor",
+      "year": 2015,
+      "creator": {
+        "name": "Gamreactor AB"
+      }
+    },
+    {
+      "type": "dvd",
+      "lengthMinutes": 122,
+      "title": "Forrest Gump",
+      "year": 1997,
+      "creator": {
+        "name": "Steven Spielberg"
+      }
+    }
+  ],
+  "members": [
+    {
+      "name": "Trevor",
+      "loans": [],
+      "memberStatus": "REGULAR",
+      "memberId": "4a31ac4e-848e-4fe5-8690-44c2a634e558"
+    },
+    {
+      "name": "Michelle",
+      "loans": [],
+      "memberStatus": "VIP",
+      "memberId": "bf0b5b25-ebd7-4bcb-8589-80018298f43e"
+    }
+  ]
+}

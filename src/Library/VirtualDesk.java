@@ -21,7 +21,7 @@ public class VirtualDesk {
         this.scanner = new Scanner(System.in);
     }
 
-    public void run() {
+    public void openLibrary() {
         while (true) {
             System.out.println("Welcome to the library!");
             System.out.println("1. Search media");
@@ -37,7 +37,7 @@ public class VirtualDesk {
                     System.out.println("Search media: ");
                     String search = scanner.nextLine();
                     if (!search.equalsIgnoreCase("back")) {
-                        searchMedia(search);
+                        searchMediaMenu(search);
                     }
                     break;
                 }
@@ -45,7 +45,7 @@ public class VirtualDesk {
                     System.out.println("Search member:");
                     String search = scanner.nextLine();
                     if (!search.equalsIgnoreCase("back")) {
-                        searchMember(search);
+                        searchMemberMenu(search);
                     }
                     break;
                 }
@@ -54,7 +54,7 @@ public class VirtualDesk {
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
                     if (!name.equalsIgnoreCase("back")) {
-                        addMember(name);
+                        addMemberMenu(name);
                     }
                     break;
                 }
@@ -112,7 +112,7 @@ public class VirtualDesk {
         }
     }
 
-    private void addMember(String name) {
+    private void addMemberMenu(String name) {
         MemberStatus memberStatus = null;
         while (true) {
             System.out.println("Choose member status: ");
@@ -138,7 +138,7 @@ public class VirtualDesk {
         System.out.println(name + " was added as a member with status of " + memberStatus);
     }
 
-    private void searchMember(String search) {
+    private void searchMemberMenu(String search) {
         int searchIndex = 0;
         ArrayList<Member> searchResult = searcher.searchMember(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
@@ -152,7 +152,7 @@ public class VirtualDesk {
         }
     }
 
-    private void searchMedia(String search) {
+    private void searchMediaMenu(String search) {
         int searchIndex = 0;
         ArrayList<Searchable> searchResult = searcher.searchLibrary(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
