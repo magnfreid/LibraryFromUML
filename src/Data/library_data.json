@@ -12,7 +12,7 @@
     {
       "type": "book",
       "pages": 500,
-      "title": "Harry Potter and the Philosopher's Stone",
+      "title": "Harry Potter and the Philosopher\u0027s Stone",
       "year": 1997,
       "creator": {
         "name": "J.K. Rowling"
@@ -114,61 +114,55 @@
       "name": "Trevor",
       "loans": [],
       "memberStatus": "REGULAR",
-      "memberId": "4a31ac4e-848e-4fe5-8690-44c2a634e558"
+      "id": "0043"
     },
     {
       "name": "Michelle",
       "loans": [],
       "memberStatus": "VIP",
-      "memberId": "bf0b5b25-ebd7-4bcb-8589-80018298f43e"
+      "id": "3219"
     },
     {
       "name": "John",
       "loans": [],
       "memberStatus": "REGULAR",
-      "memberId": "4c31bc3e-849b-4e9f-968a-48c9b2cb748f"
+      "id": "0321"
     },
     {
       "name": "Sarah",
       "loans": [],
       "memberStatus": "VIP",
-      "memberId": "ff2a45dc-901a-4eb7-95b3-74f1a0a6e587"
+      "id": "0079"
     },
     {
       "name": "James",
       "loans": [],
       "memberStatus": "REGULAR",
-      "memberId": "2d31a3ec-1135-44f9-9f65-6e312b2c47cf"
+      "id": "0143"
     },
     {
       "name": "Emily",
       "loans": [],
       "memberStatus": "VIP",
-      "memberId": "3b31ad4e-7e93-4e0d-b832-88356b73d21a"
+      "id": "2168"
     },
     {
       "name": "Robert",
       "loans": [],
       "memberStatus": "REGULAR",
-      "memberId": "6d80d3ec-997f-42df-8149-9d12cdd74c1e"
+      "id": "3764"
     },
     {
-      "name": "Linda",
-      "loans": [],
-      "memberStatus": "VIP",
-      "memberId": "4f09a14e-824e-456d-9925-4fd2a631f93e"
-    },
-    {
-      "name": "Michael",
+      "name": "Daniel",
       "loans": [],
       "memberStatus": "REGULAR",
-      "memberId": "7d98f3bd-345d-409d-b9f9-7b32538e7c1f"
+      "id": "2171"
     },
     {
-      "name": "Jennifer",
+      "name": "Joline",
       "loans": [],
-      "memberStatus": "VIP",
-      "memberId": "9b30ac6d-6e7a-41b8-8cb9-54e21b632a7e"
+      "memberStatus": "REGULAR",
+      "id": "4498"
     }
   ]
 }

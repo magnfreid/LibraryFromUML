@@ -19,85 +19,152 @@ public class VirtualDesk {
     private final Searcher searcher;
     private final Scanner scanner;
     private final Library library;
+    private final String staffPassword;
 
     public VirtualDesk(Library library) {
         this.library = library;
         this.searcher = new Searcher(library);
         this.scanner = new Scanner(System.in);
+        this.staffPassword = "1234";
     }
 
     public void openLibrary() {
         while (true) {
             System.out.println("\nWelcome to the library!");
-            System.out.println("1. Search media");
-            System.out.println("2. Search members");
-            System.out.println("3. Search authors, publisher or director");
-            System.out.println("4. Add member");
-            System.out.println("5. Add media");
-            System.out.println("6. List all members");
-            System.out.println("7. Exit");
-            System.out.println("Enter:");
+            System.out.println("1. Member");
+            System.out.println("2. Staff");
+            System.out.println("3. Exit");
             String input = scanner.nextLine();
             switch (input) {
                 case "1": {
-                    System.out.println("Search media: ");
-                    String search = scanner.nextLine();
-                    if (!search.equalsIgnoreCase("back")) {
-                        searchMediaMenu(search);
-                    }
+                    memberMenu();
                     break;
                 }
                 case "2": {
-                    System.out.println("Search member:");
-                    String search = scanner.nextLine();
-                    if (!search.equalsIgnoreCase("back")) {
-                        searchMemberMenu(search);
-                    }
+                    staffMenu();
                     break;
                 }
                 case "3": {
-                    System.out.println("Search author:");
-                    String search = scanner.nextLine();
-                    if (!search.equalsIgnoreCase("back"))
-                    {
-                        searchCreatorMenu(search);
-                    }
-                    break;
-                }
-                case "4": {
-                    System.out.println("*** Add new member ***");
-                    System.out.println("Enter name:");
-                    String name = scanner.nextLine();
-                    if (!name.equalsIgnoreCase("back")) {
-                        addMemberMenu(name);
-                    }
-                    break;
-                }
-                case "5": {
-                    System.out.println("*** Add new media to the library ***");
-                    System.out.println("Choose media:");
-                    System.out.println("1. Book");
-                    System.out.println("2. Magazine");
-                    System.out.println("3. DVD");
-                    String mediaChoice = scanner.nextLine();
-                    if (!mediaChoice.equalsIgnoreCase("back")) {
-                        addMediumMenu(mediaChoice);
-                    }
-                    break;
-                }
-                case "6": {
-                    System.out.println("All members:");
-                    library.printMembers(library.getMembers());
-                }
-                case "7": {
                     System.out.println("Exiting...");
                     System.exit(0);
                 }
                 default: {
                     System.out.println("Invalid input, try again...");
                 }
-
             }
+        }
+    }
+
+    private void staffMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("***** STAFF *****");
+            System.out.println("Enter password: ");
+            String input = scanner.nextLine();
+            if (!input.equalsIgnoreCase("back")) {
+                if (input.equals(staffPassword)) {
+                    System.out.println("Password correct!");
+                    System.out.println("\n1. Search members");
+                    System.out.println("2. Add member");
+                    System.out.println("3. Add media");
+                    System.out.println("4. List all members");
+                    System.out.println("5. Exit");
+                    System.out.println("Enter: ");
+                    input = scanner.nextLine();
+                    if (!input.equalsIgnoreCase("back")) {
+                        switch (input) {
+                            case "1": {
+                                System.out.println("Search member:");
+                                String search = scanner.nextLine();
+                                if (!search.equalsIgnoreCase("back")) {
+                                    searchMemberMenu(search);
+                                }
+                                break;
+                            }
+                            case "2": {
+                                System.out.println("*** Add new member ***");
+                                System.out.println("Enter name:");
+                                String name = scanner.nextLine();
+                                if (!name.equalsIgnoreCase("back")) {
+                                    addMemberMenu(name);
+                                }
+                                break;
+                            }
+                            case "3": {
+                                System.out.println("*** Add new media to the library ***");
+                                System.out.println("Choose media:");
+                                System.out.println("1. Book");
+                                System.out.println("2. Magazine");
+                                System.out.println("3. DVD");
+                                String mediaChoice = scanner.nextLine();
+                                if (!mediaChoice.equalsIgnoreCase("back")) {
+                                    addMediumMenu(mediaChoice);
+                                }
+                                break;
+                            }
+                            case "4": {
+                                System.out.println("All members:");
+                                library.printMembers(library.getMembers());
+                            }
+                            case "5": {
+                                running = false;
+                                break;
+                            }
+                        }
+                    }
+
+                } else {
+                    System.out.println("Incorrect password.");
+                }
+            }
+        }
+
+    }
+
+
+    private void memberMenu() {
+        System.out.println("***** MEMBER *****");
+        System.out.println("Enter member ID:");
+        String input = scanner.nextLine();
+        Member currentMember = null;
+        for (Member member : library.getMembers()) {
+            if (member.getId().equalsIgnoreCase(input)) {
+                currentMember = member;
+                break;
+            }
+        }
+        if (currentMember != null) {
+            System.out.println("1. Search media");
+            System.out.println("2. Search authors, publisher or director");
+            System.out.println("Enter:");
+            input = scanner.nextLine();
+            if (!input.equalsIgnoreCase("back")) {
+                switch (input) {
+                    case "1": {
+                        System.out.println("Search media: ");
+                        String search = scanner.nextLine();
+                        if (!search.equalsIgnoreCase("back")) {
+                            searchMediaMenu(search);
+                            //TODO lägg till att kunna välja media att låna
+                        }
+                        break;
+                    }
+                    case "2": {
+                        System.out.println("Search creator:");
+                        String search = scanner.nextLine();
+                        if (!search.equalsIgnoreCase("back")) {
+                            searchCreatorMenu(search);
+                            //TODO lägg till att kunna välja skapare och se alla media att låna
+                        }
+                        break;
+                    }
+                    default: {
+                        System.out.println("Invalid input, try again!");
+                    }
+                }
+            }
+        } else {
+            System.out.println("Member with ID: " + input + " does not exist.");
         }
     }
 
@@ -182,13 +249,14 @@ public class VirtualDesk {
             if (memberStatus != null) {
                 break;
             } else {
-                System.out.println("Invalid input. Choose a member status.");
+                System.out.println("Invalid input.");
             }
         }
         library.addMember(name, memberStatus);
         System.out.println(name + " was added as a member with status of " + memberStatus);
     }
- //TODO säkra felaktig input
+
+    //TODO säkra felaktig input
     private void searchMemberMenu(String search) {
         ArrayList<Member> searchResult = searcher.searchMember(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");
@@ -213,7 +281,8 @@ public class VirtualDesk {
             library.printMediums(searchResult);
         }
     }
-//TODO Creator listan är tom och måste läggas till i JSON-filen, eller implementeras på annat sätt
+
+    //TODO Creator listan är tom och måste läggas till i JSON-filen, eller implementeras på annat sätt
     private void searchCreatorMenu(String search) {
         ArrayList<Creator> searchResult = searcher.searchCreator(search);
         System.out.println(searchResult.isEmpty() ? "No result was found for " + search : "Search result:");

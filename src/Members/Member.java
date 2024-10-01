@@ -4,16 +4,16 @@ import Loan.Loan;
 import Search.Searchable;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Member implements Searchable {
     protected String name;
     protected ArrayList<Loan> loans;
     protected MemberStatus memberStatus;
-    protected final String memberId = UUID.randomUUID().toString();
+    protected final String id;
 
-    public Member(String name, MemberStatus memberStatus) {
+    public Member(String name, MemberStatus memberStatus, String id) {
         this.name = name;
+        this.id = id;
         this.loans = new ArrayList<>();
         this.memberStatus = memberStatus;
 
@@ -28,6 +28,10 @@ public class Member implements Searchable {
         return loans;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void printLoans(){
         System.out.println(name + " current loans:");
         for (Loan loan : loans) {
@@ -35,10 +39,13 @@ public class Member implements Searchable {
         }
     }
 
+
+
     @Override
     public String toString() {
         return "Name: " + name +
-                "\nStatus: " + memberStatus;
+                "\nStatus: " + memberStatus +
+                "\nID: " + id;
     }
 
     @Override public boolean matchesSearch(String search) {

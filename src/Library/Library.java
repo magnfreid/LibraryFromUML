@@ -6,11 +6,11 @@ import Medium.Medium.Types.DVD;
 import Medium.Medium.Types.Magazine;
 import Members.Member;
 import Medium.Medium.Medium;
-import Data.Helpers.LibraryData;
 import Data.Helpers.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 import Members.MemberStatus;
 
@@ -18,6 +18,7 @@ import Members.MemberStatus;
 public class Library {
     private ArrayList<Medium> mediums = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
+    //TODO creators måste implementeras
     private final ArrayList<Creator> creators = new ArrayList<>();
     private final VirtualDesk virtualDesk;
 
@@ -46,12 +47,11 @@ public class Library {
         for (Medium medium : mediums) {
             if (Objects.equals(medium.getCreator().getName(), newMedium.getCreator().getName())) {
                 creator = medium.getCreator();
+                break;
             }
         }
         if (creator == null) {
             creator = newMedium.getCreator();
-            {
-            }
             creators.add(creator);
         }
         mediums.add(newMedium);
@@ -86,17 +86,36 @@ public class Library {
             }
         }
         if (!memberExists) {
-            Member newMember = new Member(name, memberStatus);
+            Member newMember = new Member(name, memberStatus, generateID());
             members.add(newMember);
             JsonUtil.saveLibraryData(mediums, members);
         }
     }
 
+    private String generateID() {
+        Random random = new Random();
+        String id;
+        while (true) {
+            boolean idIsUnique = true;
+            int randomID = random.nextInt(5000);
+            id = String.format("%04d", randomID);
+            for (Member member : members) {
+                if (member.getId().equals(id)) {
+                    idIsUnique = false;
+                    break;
+                }
+            }
+            if (idIsUnique) {
+                break;
+            }
+        }
+        return id;
+    }
 
     public void printMediums(ArrayList<Medium> mediums) {
         int index = 0;
         for (Medium medium : mediums) {
-            System.out.println(index+1 + ":");
+            System.out.println(index + 1 + ":");
             System.out.println(medium);
             index++;
         }
@@ -105,7 +124,7 @@ public class Library {
     public void printMembers(ArrayList<Member> members) {
         int index = 0;
         for (Member member : members) {
-            System.out.println(index+1 + ":");
+            System.out.println(index + 1 + ":");
             System.out.println(member);
             index++;
         }
@@ -114,7 +133,7 @@ public class Library {
     public void printCreators(ArrayList<Creator> creators) {
         int index = 0;
         for (Creator creator : creators) {
-            System.out.println(index+1 + ":");
+            System.out.println(index + 1 + ":");
             System.out.println(creator);
             index++;
         }
@@ -132,3 +151,4 @@ public class Library {
         return creators;
     }
 }
+

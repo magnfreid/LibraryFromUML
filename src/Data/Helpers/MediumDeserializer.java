@@ -17,10 +17,9 @@ public class MediumDeserializer implements JsonDeserializer<Medium> {
     public Medium deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         String title = jsonObject.get("title").getAsString();
-        String mediumType = jsonObject.get("type").getAsString(); // Extracting the "type" field from JSON
+        String mediumType = jsonObject.get("type").getAsString();
         int year = jsonObject.get("year").getAsInt();
 
-        // Check the "type" field to determine which subclass of Medium to create
         switch (mediumType) {
             case "book": {
                 int pages = jsonObject.get("pages").getAsInt();
